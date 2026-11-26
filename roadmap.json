@@ -34,7 +34,11 @@
         "baton-015-lean4-php-and-barriers",
         "baton-016-gct-n30-hwv-eval",
         "baton-017-res-xor-dag-lifting",
-        "baton-018-poly-clause-unbounded-cnf"
+        "baton-018-poly-clause-unbounded-cnf",
+        "baton-019-lean4-valiant-and-frobenius",
+        "baton-020-gct-padded-m4-obstructions",
+        "baton-021-res-xor-span-program-interp",
+        "baton-022-lean4-gct-perm3-witness"
       ],
       "owner_baton": null,
       "artifacts": []
@@ -313,40 +317,117 @@
     },
     {
       "id": "baton-016-gct-n30-hwv-eval",
-      "title": "Evaluate certified N=30 degree-10 defining equations of Omega_3 on perm_3 via HWVs",
+      "title": "Explicit N=30 degree-10 HWV construction and evaluation on Omega_3 vs GL_9 . perm_3",
       "type": "attack_route",
-      "status": "open",
+      "status": "verified",
       "dependencies": [
         "baton-013-gct-multiplicity-search"
       ],
-      "owner_baton": null,
-      "artifacts": [],
-      "summary": "Unlocked by Baton #013: Test whether the two certified N=30 (d=10, m=3) obstructions (13,3,2^7) and (12,5,2^6,1) do not vanish on perm_3 via explicit highest-weight vector evaluation."
+      "owner_baton": "baton-016",
+      "artifacts": [
+        "batons/baton-016-gct-n30-hwv-eval/ATTACK_REPORT.md",
+        "batons/baton-016-gct-n30-hwv-eval/POSTMORTEM.md",
+        "batons/baton-016-gct-n30-hwv-eval/node_patch.json",
+        "verification/verify_baton_016_gct_n30_hwv.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_016_gct_n30_hwv.py",
+      "summary": "Explicitly constructed in closed form the unique degree-10 highest-weight vectors H_1 = 9 det(M_0) T_{001} - Tr(adj(M_0) M_1) T_{000} for lambda^(1)=(13,3,2^7) and H_2 = Q'(0) T_{000} - 6 Q(0) T_{001} (with Q(t)=det((M_0+t M_1)_{:,0..7} | v_{11})) for lambda^(2)=(12,5,2^6,1); certified exact weights and invariance under all 36 U_9 raising operators (720/720 checks per prime across p=1000003,1000033); proved analytically that both vanish identically on Omega_3 via det(H_{det_3}(X))=-2 det(X)^3 and adj(H_{det_3}(X))(W)=det(X)^2(2 X W^T X - Tr(X W^T) X); and verified 50/50 zero on det_3 & x_8*perm_2 vs 50/50 nonzero on perm_3 over F_p plus an exact integer SL_9(Z) witness (det=1, 15 nonzeros) giving H_1(g0.perm_3)=-48 and H_2(g0.perm_3)=+48, constructively proving perm_3 not in Omega_3 (underline_dc(perm_3) > 3) via two explicit degree-10 GCT occurrence obstructions."
     },
     {
       "id": "baton-017-res-xor-dag-lifting",
-      "title": "Design affine-subspace switching lemma to attack DAG Res(XOR) on PHP and Count_3",
+      "title": "Affine-Subspace Restrictions, PDT Prover-Delayer Lower Bounds, and the Tree-to-DAG Wall in Res(XOR)",
       "type": "attack_route",
-      "status": "open",
+      "status": "blocked_by_barrier",
       "dependencies": [
         "baton-012-ac0-mod2-frege-php"
       ],
-      "owner_baton": null,
-      "artifacts": [],
-      "summary": "Unlocked by Baton #012: Bypass the BSW single-variable literal-diversity breakdown in Res(XOR) by lifting F_2 PC dual witnesses via affine subspace restrictions."
+      "owner_baton": "baton-017",
+      "artifacts": [
+        "batons/baton-017-res-xor-dag-lifting/ATTACK_REPORT.md",
+        "batons/baton-017-res-xor-dag-lifting/POSTMORTEM.md",
+        "batons/baton-017-res-xor-dag-lifting/node_patch.json",
+        "verification/verify_baton_017_res_xor_affine_lifting.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_017_res_xor_affine_lifting.py",
+      "summary": "Proved and verified the Exact Grassmann Affine-Restriction Kill Formula P_kill(V,k,r) over F_2^20 (k=4,6; S=200), showing single-variable restrictions kill 0/200 clauses while uniform random codim-r subspaces hit a Grassmann codimension cliff at r = V - k and subspace-aligned restrictions (r=1..10) collapse clauses up to 1 - 2^(-k) while inducing positive pairwise kill correlation (Corr = +0.063..+0.232..+1.000) and quotient collapse; proved and live-verified the Exact PC/F_2 Degree-Drop Dichotomy, Sharpened Leaf-Exclusion Lemma, and linear-algebraic Prover-Delayer adversary certifying exponential Tree-Res(XOR)/PDT size >= 2^ceil(n/2) on FPHP_n^(n+1) and 2^Omega(m) on Count_3(m) (with exact global min PDT = 10 leaves on Count_3(4) and 0 dichotomy violations across live games + 50 dense root checks on FPHP_3^4 + Count_3(10)); and constructed zero-trust-verified small-width DAG-Res(XOR) witnesses on Peb^XOR(D_L) and Pyramid Peb(P_h) o OR_2 pinning down the exact Tree->DAG wall: memoized clauses merge 2^(L-1) / >=C(h,h/2) pairwise disjoint affine histories and drive sub-DAG overlap ratio rho(h) -> (h-1)/(h+1) -> 1 (0.7805 at h=8), shattering Check 2's min(L_0,L_1)<=L/2 tree induction."
     },
     {
       "id": "baton-018-poly-clause-unbounded-cnf",
       "title": "Attack Polynomial-Clause Unbounded-Width CNF-SAT (M = n^B) toward Valiant's O(n/log log n) bridge",
       "type": "attack_route",
-      "status": "open",
+      "status": "blocked_by_barrier",
       "dependencies": [
         "baton-014-cnf-sat-seth-unbounded-width"
       ],
+      "owner_baton": "baton-018",
+      "artifacts": [
+        "batons/baton-018-poly-clause-unbounded-cnf/ATTACK_REPORT.md",
+        "batons/baton-018-poly-clause-unbounded-cnf/POSTMORTEM.md",
+        "batons/baton-018-poly-clause-unbounded-cnf/node_patch.json",
+        "verification/verify_baton_018_poly_clause_cnf.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_018_poly_clause_cnf.py",
+      "summary": "Implemented and verified width-independent CNF-SAT -> OV reduction with bit-parallel subtree-pruning OV search (30/30 brute-force agreement across n=10..14, M=n^2, widths [n//2, n-2]; 10.40x overall / 3.65x UNSAT speedup); derived and verified the exact Abboud-Williams-Yu / Chan-Williams polynomial-method + rectangular-MM scaling law across M=n^2..n^10 (n=100..2^30), proving an intrinsic Theta((B-1)log n / log log n) shortfall to Valiant's bridge that persists even under omega=2 (alpha=1); discovered the exact boundary collision at M=n*(log n)^q (ratio -> alpha/(2q)); and proved via F_2 pairwise-independence Chebyshev bounds + empirical checks (M=64..256, r=4..12) why probabilistic polynomial compression forces r=Omega(n) globally and locks block-batched OV to O(n/log(M/n))."
+    },
+    {
+      "id": "baton-019-lean4-valiant-and-frobenius",
+      "title": "Extend zero-Mathlib Lean 4.12 library with F_2 Frobenius, Valiant iterated depth-reduction & Schuler monotonicity theorems",
+      "type": "formalization",
+      "status": "verified",
+      "dependencies": [
+        "baton-015-lean4-php-and-barriers",
+        "baton-012-ac0-mod2-frege-php",
+        "baton-014-cnf-sat-seth-unbounded-width"
+      ],
+      "owner_baton": "baton-019",
+      "artifacts": [
+        "formal/lean4/MillenniumRelay/ValiantAndAlgebrization.lean",
+        "formal/lean4/lakefile.toml",
+        "batons/baton-019-lean4-valiant-and-frobenius/ATTACK_REPORT.md",
+        "batons/baton-019-lean4-valiant-and-frobenius/POSTMORTEM.md",
+        "batons/baton-019-lean4-valiant-and-frobenius/node_patch.json",
+        "verification/verify_baton_019_lean4_valiant_frobenius.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_019_lean4_valiant_frobenius.py",
+      "summary": "Added a third zero-Mathlib, zero-sorry, zero-Classical.choice Lean 4.12 module formal/lean4/MillenniumRelay/ValiantAndAlgebrization.lean proving 19 constructive theorems covering F_2 Frobenius & k-ary parity idempotence (f2_idempotent, f2_frobenius_add_sq, f2_xor_cancel_right, f2_frobenius_xorFin_sq), Valiant's multi-step cut budget composed with Baton #015's MSB halving step (valiant_iterated_cut_budget, valiant_iterated_cut_budget_div, valiant_iterated_msb_existence), exact depth-halving powers (valiant_depth_halving_power, valiant_depth_halving_div), and Schuler width-splitting monotonicity (schuler_split_monotonicity, schuler_right_branch_var_drop, schuler_leaf_pow_mono); registered the third root in lakefile.toml and verified via live local Lean 4 kernel build, axiom audit (0 sorryAx, 0 Classical.choice), and exhaustive Python cross-checks."
+    },
+    {
+      "id": "baton-020-gct-padded-m4-obstructions",
+      "title": "Extend explicit GCT HWV obstruction search from unpadded m=3 to padded m=4 (border dc(perm_3) > 4)",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [
+        "baton-016-gct-n30-hwv-eval"
+      ],
       "owner_baton": null,
       "artifacts": [],
-      "summary": "Unlocked by Baton #014: Linear-clause unbounded-width CNF-SAT collapsed under Schuler+IPZ+Oct2026; investigate whether M = n^B unbounded-width CNF-SAT admits 2^(n - omega(n/log log n)) algorithms."
+      "summary": "Unlocked by Baton #016: H_1 and H_2 proved border_dc(perm_3) > 3 via explicit degree-10 HWVs but vanish on padded orbits (l=m^2 > n^2+1). Next frontier: padded (n=3, m=4) obstructions with l <= 10 (testing border_dc(perm_3) > 4)."
+    },
+    {
+      "id": "baton-021-res-xor-span-program-interp",
+      "title": "Test DAG-native Feasible Interpolation for Res(XOR) via F_2-span programs & monotone/affine hybrids",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [
+        "baton-017-res-xor-dag-lifting"
+      ],
+      "owner_baton": null,
+      "artifacts": [],
+      "summary": "Unlocked by Baton #017: Bypass the Tree->DAG sub-DAG overlap wall (rho -> 1) by testing DAG-native F_2-span-program interpolation and PHP o IP_b gadget lifting."
+    },
+    {
+      "id": "baton-022-lean4-gct-perm3-witness",
+      "title": "Formalize Baton #016's exact integer SL_9(Z) witness H_1(g0.perm_3) = -48 != 0 in Lean 4.12",
+      "type": "formalization",
+      "status": "open",
+      "dependencies": [
+        "baton-016-gct-n30-hwv-eval",
+        "baton-019-lean4-valiant-and-frobenius"
+      ],
+      "owner_baton": null,
+      "artifacts": [],
+      "summary": "Unlocked by Batons #016 & #019: Turn the sparse exact-integer witness g_0 in SL_9(Z) (det=1, H_1(g0.det_3)=0, H_1(g0.perm_3)=-48) into a zero-sorry Lean 4.12 kernel-verified certificate."
     }
   ],
-  "completed_batons": 15
+  "completed_batons": 19
 }

@@ -4,4 +4,4 @@ defaultTargets = ["MillenniumRelay"]
 
 [[lean_lib]]
 name = "MillenniumRelay"
-roots = ["MillenniumRelay.TseitinDichotomy", "MillenniumRelay.ProofComplexityPHP"]
+roots = ["MillenniumRelay.TseitinDichotomy", "MillenniumRelay.ProofComplexityPHP", "MillenniumRelay.ValiantAndAlgebrization"]

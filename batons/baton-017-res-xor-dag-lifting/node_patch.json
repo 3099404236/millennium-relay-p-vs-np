@@ -1,0 +1,18 @@
+{
+  "id": "baton-017-res-xor-dag-lifting",
+  "title": "Affine-Subspace Restrictions, PDT Prover-Delayer Lower Bounds, and the Tree-to-DAG Wall in Res(XOR)",
+  "type": "attack_route",
+  "status": "blocked_by_barrier",
+  "dependencies": [
+    "baton-012-ac0-mod2-frege-php"
+  ],
+  "owner_baton": "baton-017",
+  "artifacts": [
+    "batons/baton-017-res-xor-dag-lifting/ATTACK_REPORT.md",
+    "batons/baton-017-res-xor-dag-lifting/POSTMORTEM.md",
+    "batons/baton-017-res-xor-dag-lifting/node_patch.json",
+    "verification/verify_baton_017_res_xor_affine_lifting.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_017_res_xor_affine_lifting.py",
+  "summary": "Proved and verified the Exact Grassmann Affine-Restriction Kill Formula P_kill(V,k,r) over F_2^20 (k=4,6; S=200), showing single-variable restrictions kill 0/200 clauses while uniform random codim-r subspaces hit a Grassmann codimension cliff at r = V - k and subspace-aligned restrictions (r=1..10) collapse clauses up to 1 - 2^(-k) while inducing positive pairwise kill correlation (Corr = +0.063..+0.232..+1.000) and quotient collapse; proved and live-verified the Exact PC/F_2 Degree-Drop Dichotomy, Sharpened Leaf-Exclusion Lemma, and linear-algebraic Prover-Delayer adversary certifying exponential Tree-Res(XOR)/PDT size >= 2^ceil(n/2) on FPHP_n^(n+1) and 2^Omega(m) on Count_3(m) (with exact global min PDT = 10 leaves on Count_3(4) and 0 dichotomy violations across live games + 50 dense root checks on FPHP_3^4 + Count_3(10)); and constructed zero-trust-verified small-width DAG-Res(XOR) witnesses on Peb^XOR(D_L) and Pyramid Peb(P_h) o OR_2 pinning down the exact Tree->DAG wall: memoized clauses merge 2^(L-1) / >=C(h,h/2) pairwise disjoint affine histories and drive sub-DAG overlap ratio rho(h) -> (h-1)/(h+1) -> 1 (0.7805 at h=8), shattering Check 2's min(L_0,L_1)<=L/2 tree induction."
+}

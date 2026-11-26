@@ -1,0 +1,18 @@
+{
+  "id": "baton-018-poly-clause-unbounded-cnf",
+  "title": "Attack Polynomial-Clause Unbounded-Width CNF-SAT (M = n^B) toward Valiant's O(n/log log n) bridge",
+  "type": "attack_route",
+  "status": "blocked_by_barrier",
+  "dependencies": [
+    "baton-014-cnf-sat-seth-unbounded-width"
+  ],
+  "owner_baton": "baton-018",
+  "artifacts": [
+    "batons/baton-018-poly-clause-unbounded-cnf/ATTACK_REPORT.md",
+    "batons/baton-018-poly-clause-unbounded-cnf/POSTMORTEM.md",
+    "batons/baton-018-poly-clause-unbounded-cnf/node_patch.json",
+    "verification/verify_baton_018_poly_clause_cnf.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_018_poly_clause_cnf.py",
+  "summary": "Implemented and verified width-independent CNF-SAT -> OV reduction with bit-parallel subtree-pruning OV search (30/30 brute-force agreement across n=10..14, M=n^2, widths [n//2, n-2]; 10.40x overall / 3.65x UNSAT speedup); derived and verified the exact Abboud-Williams-Yu / Chan-Williams polynomial-method + rectangular-MM scaling law across M=n^2..n^10 (n=100..2^30), proving an intrinsic Theta((B-1)log n / log log n) shortfall to Valiant's bridge that persists even under omega=2 (alpha=1); discovered the exact boundary collision at M=n*(log n)^q (ratio -> alpha/(2q)); and proved via F_2 pairwise-independence Chebyshev bounds + empirical checks (M=64..256, r=4..12) why probabilistic polynomial compression forces r=Omega(n) globally and locks block-batched OV to O(n/log(M/n))."
+}

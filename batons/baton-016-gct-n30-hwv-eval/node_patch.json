@@ -1,0 +1,18 @@
+{
+  "id": "baton-016-gct-n30-hwv-eval",
+  "title": "Explicit N=30 degree-10 HWV construction and evaluation on Omega_3 vs GL_9 . perm_3",
+  "type": "attack_route",
+  "status": "verified",
+  "dependencies": [
+    "baton-013-gct-multiplicity-search"
+  ],
+  "owner_baton": "baton-016",
+  "artifacts": [
+    "batons/baton-016-gct-n30-hwv-eval/ATTACK_REPORT.md",
+    "batons/baton-016-gct-n30-hwv-eval/POSTMORTEM.md",
+    "batons/baton-016-gct-n30-hwv-eval/node_patch.json",
+    "verification/verify_baton_016_gct_n30_hwv.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_016_gct_n30_hwv.py",
+  "summary": "Explicitly constructed in closed form the unique degree-10 highest-weight vectors H_1 = 9 det(M_0) T_{001} - Tr(adj(M_0) M_1) T_{000} for lambda^(1)=(13,3,2^7) and H_2 = Q'(0) T_{000} - 6 Q(0) T_{001} (with Q(t)=det((M_0+t M_1)_{:,0..7} | v_{11})) for lambda^(2)=(12,5,2^6,1); certified exact weights and invariance under all 36 U_9 raising operators (720/720 checks per prime across p=1000003,1000033); proved analytically that both vanish identically on Omega_3 via det(H_{det_3}(X))=-2 det(X)^3 and adj(H_{det_3}(X))(W)=det(X)^2(2 X W^T X - Tr(X W^T) X); and verified 50/50 zero on det_3 & x_8*perm_2 vs 50/50 nonzero on perm_3 over F_p plus an exact integer SL_9(Z) witness (det=1, 15 nonzeros) giving H_1(g0.perm_3)=-48 and H_2(g0.perm_3)=+48, constructively proving perm_3 not in Omega_3 (underline_dc(perm_3) > 3) via two explicit degree-10 GCT occurrence obstructions."
+}

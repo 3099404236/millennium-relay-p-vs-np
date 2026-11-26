@@ -1,0 +1,22 @@
+{
+  "id": "baton-019-lean4-valiant-and-frobenius",
+  "title": "Extend zero-Mathlib Lean 4.12 library with F_2 Frobenius, Valiant iterated depth-reduction & Schuler monotonicity theorems",
+  "type": "formalization",
+  "status": "verified",
+  "dependencies": [
+    "baton-015-lean4-php-and-barriers",
+    "baton-012-ac0-mod2-frege-php",
+    "baton-014-cnf-sat-seth-unbounded-width"
+  ],
+  "owner_baton": "baton-019",
+  "artifacts": [
+    "formal/lean4/MillenniumRelay/ValiantAndAlgebrization.lean",
+    "formal/lean4/lakefile.toml",
+    "batons/baton-019-lean4-valiant-and-frobenius/ATTACK_REPORT.md",
+    "batons/baton-019-lean4-valiant-and-frobenius/POSTMORTEM.md",
+    "batons/baton-019-lean4-valiant-and-frobenius/node_patch.json",
+    "verification/verify_baton_019_lean4_valiant_frobenius.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_019_lean4_valiant_frobenius.py",
+  "summary": "Added a third zero-Mathlib, zero-sorry, zero-Classical.choice Lean 4.12 module formal/lean4/MillenniumRelay/ValiantAndAlgebrization.lean proving 19 constructive theorems covering F_2 Frobenius & k-ary parity idempotence (f2_idempotent, f2_frobenius_add_sq, f2_xor_cancel_right, f2_frobenius_xorFin_sq), Valiant's multi-step cut budget composed with Baton #015's MSB halving step (valiant_iterated_cut_budget, valiant_iterated_cut_budget_div, valiant_iterated_msb_existence), exact depth-halving powers (valiant_depth_halving_power, valiant_depth_halving_div), and Schuler width-splitting monotonicity (schuler_split_monotonicity, schuler_right_branch_var_drop, schuler_leaf_pow_mono); registered the third root in lakefile.toml and verified via live local Lean 4 kernel build, axiom audit (0 sorryAx, 0 Classical.choice), and exhaustive Python cross-checks."
+}
