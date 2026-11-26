@@ -8,7 +8,7 @@ on:
 
 jobs:
   python-verification-gate:
-    name: Python Verification & Relay Gate (12 Suites + DAG Audit)
+    name: Python Verification & Relay Gate (16 Suites + 20-Node DAG Audit)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -23,7 +23,7 @@ jobs:
         run: python verification/validate_relay_gate.py
 
   lean4-kernel-gate:
-    name: Lean 4.12 Kernel Verification (Baton #002)
+    name: Lean 4.12 Kernel Verification (Baton #002 + Baton #015)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

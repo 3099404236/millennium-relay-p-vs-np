@@ -1,0 +1,18 @@
+{
+  "id": "baton-014-cnf-sat-seth-unbounded-width",
+  "title": "Unbounded-Width CNF-SAT + Valiant Depth-Reduction Bridge (Post-Oct-2026 Frontier)",
+  "type": "attack_route",
+  "status": "verified",
+  "dependencies": [
+    "baton-011-fine-grained-eth-consequences"
+  ],
+  "owner_baton": "baton-014",
+  "artifacts": [
+    "batons/baton-014-cnf-sat-seth-unbounded-width/ATTACK_REPORT.md",
+    "batons/baton-014-cnf-sat-seth-unbounded-width/POSTMORTEM.md",
+    "batons/baton-014-cnf-sat-seth-unbounded-width/node_patch.json",
+    "verification/verify_baton_014_valiant_unbounded_cnf.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_014_valiant_unbounded_cnf.py",
+  "summary": "Constructively proved and verified Valiant's 1977 MSB depth-reduction engine across 13 explicit fan-in-2 DAGs (d=8,16,32; N=64..528; 90 halving checks) and exact Sol(C)=Union Sol(Phi_y) equivalence on 6 concrete depth-8 circuits; implemented Ordered Schuler width-splitting + clause-hitting-set SAT (40/40 brute-force match across n=10..14, exact 5-digit concave-maximum bound 1-1/k+2*Delta*log2(e)/2^k); proved Linear-Clause Unbounded-Width CNF-SAT also collapses to 2^(o(n)) post-Oct-2026 above a triply-exponential crossover, isolating Polynomial-Clause CNF-SAT-SETH and quantifying the exact gap to Valiant's Omega(n/log log n) log-depth Circuit-SAT barrier."
+}

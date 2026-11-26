@@ -1,0 +1,18 @@
+{
+  "id": "baton-013-gct-multiplicity-search",
+  "title": "Search for positive multiplicity obstructions (plethysm vs symmetric Kronecker) at N >= 12",
+  "type": "attack_route",
+  "status": "verified",
+  "dependencies": [
+    "baton-005-gct-obstructions"
+  ],
+  "owner_baton": "baton-013",
+  "artifacts": [
+    "batons/baton-013-gct-multiplicity-search/ATTACK_REPORT.md",
+    "batons/baton-013-gct-multiplicity-search/POSTMORTEM.md",
+    "batons/baton-013-gct-multiplicity-search/node_patch.json",
+    "verification/verify_baton_013_gct_multiplicity_scan.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_013_gct_multiplicity_scan.py",
+  "summary": "Built Maya-bitmask Murnaghan-Nakayama & wreath-product plethysm engine verifying full S_12, S_14, S_15, S_16 character tables and GL_2..6 / S_N dimension identities in 1.86s; exhaustively scanned all 8 core m>=3 regimes and 14 padded (n=2,3) regimes (146 Pieri candidates), certifying 0 open-orbit gaps a_lambda(d,m) > sk(lambda; d^m) at N<=16 (while calibrating 13 dimension-trivial l>=5 gaps at m=2); proved Dixon-Beauville (d<=3) & Cayley-Grassmann (m=3, d<=4) universality walls, quantified open-orbit boundary inflation (3.682x at m=3,d=5), and certified 2 genuine non-trivial (l=9=m^2) degree-10 defining equations of Omega_3 at N=30: (13,3,2^7) and (12,5,2^6,1) with a=1 > 0=k=sk."
+}

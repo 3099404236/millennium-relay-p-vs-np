@@ -1,0 +1,21 @@
+{
+  "id": "baton-015-lean4-php-and-barriers",
+  "title": "Expand zero-Mathlib Lean 4.12 library with PHP, Cutting Planes & Valiant depth-reduction theorems",
+  "type": "formalization",
+  "status": "verified",
+  "dependencies": [
+    "baton-002-lean4-tseitin-dichotomy",
+    "baton-006-proof-complexity-ef"
+  ],
+  "owner_baton": "baton-015",
+  "artifacts": [
+    "formal/lean4/MillenniumRelay/ProofComplexityPHP.lean",
+    "formal/lean4/lakefile.toml",
+    "batons/baton-015-lean4-php-and-barriers/ATTACK_REPORT.md",
+    "batons/baton-015-lean4-php-and-barriers/POSTMORTEM.md",
+    "batons/baton-015-lean4-php-and-barriers/node_patch.json",
+    "verification/verify_baton_015_lean4_library.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_015_lean4_library.py",
+  "summary": "Added zero-Mathlib, zero-sorry, zero-warning Lean 4.12 core proofs of pigeonhole_no_injection, cutting_planes_php_contradiction (plus chvatal_gomory_hole_step), and valiant_msb_halving_step in formal/lean4/MillenniumRelay/ProofComplexityPHP.lean; registered the module in lakefile.toml; verified via live local Lean 4 kernel check (only [propext, Quot.sound]) and exhaustive combinatorial/DAG cross-checks in verify_baton_015_lean4_library.py."
+}

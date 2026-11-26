@@ -39,29 +39,33 @@
 
 ---
 
-## 3. 接力战报总览（已完成 11 棒：Baton #001 + 10-Agent 并行波次 #002–#011）
+## 3. 接力战报总览（已完成 15 棒：Wave 1 #001 + Wave 2 10-Agent 排雷 #002–#011 + Wave 3 幸存缝隙深潜 #012–#015）
 
 - **目前是否解决了 P vs NP？** **没有（`p_vs_np_resolved: false`）**——全仓严格遵守诚实原则与机检门禁，绝不伪造未验证的“已证明”声明。
-- **11 棒已完成的全部可验证成果与死胡同剪枝图谱（12 套可执行验证脚本 + Lean 4.12 形式化核校验）**：
+- **15 棒已完成的全部可验证成果（16 套 Python 验证脚本 + 2 份 Lean 4.12 零 `sorry` 形式化文件由 GitHub Actions 真实内核编译验证）**：
 
-| 棒次 | 路线 / 模块 | 状态 | 核心可验证结论与剪枝边界 | 验证脚本 |
+| 棒次 | 路线 / 模块 | 状态 | 核心可验证结论、新算出的前沿数据与剪枝边界 | 验证脚本 |
 | :--- | :--- | :--- | :--- | :--- |
-| **Baton #001** | 黑盒 Tseitin + 次指数 3-SAT（ETH 证伪接入 Williams 方法） | `pruned` | 证明并验证黑盒 Tseitin 最高仅达 $s^*(n)=\Theta(n\sqrt{\log n})$；触及 $\text{P/poly}$ 等价于 $3\text{-SAT}\in\bigcap_{\epsilon>0}\text{DTIME}(2^{m^\epsilon})$ | [`verify_tseitin_dichotomy.py`](verification/verify_tseitin_dichotomy.py) / [`verify_barriers.py`](verification/verify_barriers.py) |
-| **Baton #002** | Lean 4.12 形式化证明（消除 `TseitinDichotomy.lean` 全部 `sorry`） | `verified` | 零 Mathlib、零自定义公理完成两条核心定理形式化（320,000 组自然数三元组穷举复核 + GitHub Actions `lake build` 内核检验） | [`verify_baton_002_lean_proof.py`](verification/verify_baton_002_lean_proof.py) |
-| **Baton #003** | 绕过 Tseitin 的直接 $\text{TC}^0\text{-SAT}$ 算法 | `blocked_by_barrier` | 零 Tseitin 变量深度-2 阈值求解器剪枝 92.9% 搜索量；定量验证 Chen–Tell 线数衰减 $n^{1+c^{-d}}$ 与 Allender–Koucký 永不相交，以及 BRS 有理逼近通分次数爆炸 | [`verify_baton_003_tc0_sat.py`](verification/verify_baton_003_tc0_sat.py) |
-| **Baton #004** | 非局部硬度放大（Hardness Magnification）与 CHOPRS 局部性壁垒 | `blocked_by_barrier` | 穷举认证 $n=3$ 全部 256 个布尔函数精确电路规模（14 个 NPN 类）；验证深度 $\le 3$ 局部预言机决策树与 Hirahara 非黑盒归约遭遇的「非一致编码长度悖论」 | [`verify_baton_004_magnification_locality.py`](verification/verify_baton_004_magnification_locality.py) |
-| **Baton #005** | 几何复杂度理论（GCT）：积和式 vs 行列式 | `blocked_by_barrier` | 符号与数值验证 Grenet $7\times 7$（`perm_3`）与 $15\times 15$（`perm_4`）行列式矩阵；用精确 Murnaghan–Nakayama 特征标表重现 BIP (JAMS 2019) 出现障碍 100% 失效，锁定重数障碍前沿 | [`verify_baton_005_gct_perm_det.py`](verification/verify_baton_005_gct_perm_det.py) |
-| **Baton #006** | 证明复杂度（Resolution / Cutting Planes / Extended Frege） | `blocked_by_barrier` | 机械验证 `PHP_n^(n+1)` 在 Resolution 下的指数爆炸与宽度下界，同时构造并逐行核验 Cutting Planes 多项式反驳（精确 $n^3+3n^2-n+1$ 行，测至 $n=20$）；锁定 EF 可行插值与自指反射壁垒 | [`verify_baton_006_proof_complexity.py`](verification/verify_baton_006_proof_complexity.py) |
-| **Baton #007** | 单调电路下界、GPW 查询-通信提升与非单调抵消墙 | `blocked_by_barrier` | 精确向日葵提取、3-CLIQUE vs 2-COLORABLE 单调/非单调 KW 矩形覆盖对比（10 vs 7）、GPW 512/512 精确提升，以及纯标准库 Jacobi 特征值求解器验证 Tardos Lovász $\vartheta$ 指数鸿沟 | [`verify_baton_007_monotone_lifting.py`](verification/verify_baton_007_monotone_lifting.py) |
-| **Baton #008** | 一般电路显式下界与门消除法（Gate Elimination） | `pruned` | 构建 $B_2$ DAG 化简器并证明「对偶距-3 XOR 屏蔽定理」：即便在 $\Theta(n^2)$ 电路上，单步常数/仿射门消除也被死锁在 $\le 4$ 门，严格封死局部门消除突破 $O(n)$ 的可能 | [`verify_baton_008_gate_elimination.py`](verification/verify_baton_008_gate_elimination.py) |
-| **Baton #009** | Aaronson–Wigderson 代数化壁垒与 Sumcheck 协议审计 | `verified` | 实现 $\mathbb{F}_{101}/\mathbb{F}_{257}$ 精确多线性低次扩张与完整交互式 Sumcheck 协议，并显式构造“隐藏稀疏交集”的代数预言机碰撞样本，量化纯算术化为何无法分离 P vs NP | [`verify_baton_009_algebrization.py`](verification/verify_baton_009_algebrization.py) |
-| **Baton #010** | Williams $\text{ACC}^0$ 多项式方法与 $\text{ACC}^0 \to \text{TC}^0$ 墙 | `verified` | 实现快速 Zeta/SOS 变换（最高 26.4x 加速）与 Beigel–Tarui $\text{AND}_2\circ\text{MOD}_6$ 编译，并用 Smolensky 普适下界定量验证加入 `MAJ` 门后在 $n=10{,}000$ 时彻底击穿矩形矩阵乘法预算 | [`verify_baton_010_acc0_poly_method.py`](verification/verify_baton_010_acc0_poly_method.py) |
-| **Baton #011** | 2026.10 ETH 证伪后的精细复杂度连锁反应审计 | `verified` | 实现真实 IPZ 3-CNF 稀疏化分支器（100% 解集等价），验证固定 $k$ 下 SETH 随 ETH 坍塌但无界宽度 `CNF-SAT-SETH`、自然证明及 $\text{P}\neq\text{NP}$ 依然完好（指数鸿沟在 $n=2^{1000}$ 仍高达 $2^{982}$） | [`verify_baton_011_eth_consequences.py`](verification/verify_baton_011_eth_consequences.py) |
+| **Baton #001** | 黑盒 Tseitin + 次指数 3-SAT（ETH 证伪接入 Williams 方法） | `pruned` | 证明黑盒 Tseitin 最高仅达 $s^*(n)=\Theta(n\sqrt{\log n})$；触及 $\text{P/poly}$ 等价于 $3\text{-SAT}\in\bigcap_{\epsilon>0}\text{DTIME}(2^{m^\epsilon})$ | [`verify_tseitin_dichotomy.py`](verification/verify_tseitin_dichotomy.py) / [`verify_barriers.py`](verification/verify_barriers.py) |
+| **Baton #002** | Lean 4.12 形式化证明（`TseitinDichotomy.lean`） | `verified` | 零 Mathlib、零自定义公理消除全部 `sorry`，320,000 组穷举复核 + GitHub Actions `lake build` 内核绿灯 | [`verify_baton_002_lean_proof.py`](verification/verify_baton_002_lean_proof.py) |
+| **Baton #003** | 绕过 Tseitin 的直接 $\text{TC}^0\text{-SAT}$ 算法 | `blocked_by_barrier` | 零 Tseitin 深度-2 阈值求解器剪枝 92.9% 搜索量；验证 Chen–Tell 与 Allender–Koucký 永不相交及 BRS 通分次数爆炸 | [`verify_baton_003_tc0_sat.py`](verification/verify_baton_003_tc0_sat.py) |
+| **Baton #004** | 非局部硬度放大与 CHOPRS 局部性壁垒 | `blocked_by_barrier` | 认证 $n=3$ 全部 256 个布尔函数精确电路规模（14 NPN 类）；分离 Hirahara 非黑盒归约的「非一致编码长度悖论」 | [`verify_baton_004_magnification_locality.py`](verification/verify_baton_004_magnification_locality.py) |
+| **Baton #005** | 几何复杂度理论（GCT）：积和式 vs 行列式 | `blocked_by_barrier` | 符号验证 Grenet $7\times 7$（`perm_3`）与 $15\times 15$（`perm_4`）矩阵；重现 BIP (JAMS 2019) 出现障碍 100% 失效 | [`verify_baton_005_gct_perm_det.py`](verification/verify_baton_005_gct_perm_det.py) |
+| **Baton #006** | 证明复杂度（Resolution / Cutting Planes / EF） | `blocked_by_barrier` | 机械验证 `PHP` 在 Resolution 下的指数爆炸与 Cutting Planes 多项式反驳（精确 $n^3+3n^2-n+1$ 行，测至 $n=20$） | [`verify_baton_006_proof_complexity.py`](verification/verify_baton_006_proof_complexity.py) |
+| **Baton #007** | 单调电路提升 & 非单调抵消墙 | `blocked_by_barrier` | 精确向日葵提取、KW 单调/非单调矩形覆盖对比（10 vs 7）、GPW 512/512 提升，及 Jacobi 求解器验证 Tardos Lovász $\vartheta$ | [`verify_baton_007_monotone_lifting.py`](verification/verify_baton_007_monotone_lifting.py) |
+| **Baton #008** | 一般电路门消除法（Gate Elimination） | `pruned` | 证明「对偶距-3 XOR 屏蔽定理」：即便在 $\Theta(n^2)$ 电路上，局部门消除单步也被锁死在 $\le 4$ 门，封死 $O(n)$ 天花板 | [`verify_baton_008_gate_elimination.py`](verification/verify_baton_008_gate_elimination.py) |
+| **Baton #009** | Aaronson–Wigderson 代数化壁垒与 Sumcheck | `verified` | 实现 $\mathbb{F}_{101}/\mathbb{F}_{257}$ 精确 MLE 与完整 Sumcheck 协议，构造隐藏稀疏交集的代数预言机碰撞样本 | [`verify_baton_009_algebrization.py`](verification/verify_baton_009_algebrization.py) |
+| **Baton #010** | Williams $\text{ACC}^0$ 多项式方法与 $\text{TC}^0$ 墙 | `verified` | 实现快速 Zeta 变换（26.4x 加速）与 Beigel–Tarui 编译，用 Smolensky 下界标定 `MAJ` 门击穿矩形矩阵乘法预算 | [`verify_baton_010_acc0_poly_method.py`](verification/verify_baton_010_acc0_poly_method.py) |
+| **Baton #011** | 2026.10 ETH 证伪后的精细复杂度全景审计 | `verified` | 实现 IPZ 3-CNF 稀疏化分支器，验证固定 $k$ SETH 坍塌而无界宽度 `CNF-SAT-SETH` 与自然证明幸存 | [`verify_baton_011_eth_consequences.py`](verification/verify_baton_011_eth_consequences.py) |
+| **Baton #012** | **【Wave 3 缝隙 1】$\text{AC}^0[2]\text{-Frege}$ / $\text{Res}(\oplus)$ / $\text{PC}/\mathbb{F}_2$** | `verified` | 算出 $\text{FPHP}_{2,3,4}$ 精确 $\text{PC}/\mathbb{F}_2$ 次数 `[2,3,3]` 及 $n=4$ 动态 PC vs 静态 NS 严格分离（$3<4$）；发现 $\text{Count}_3(7)$ Kneser 分离（$2<3$）并验证 $\text{Count}_3(10)$ 1416 维二次对偶见证与 Frobenius 扩展不变性 | [`verify_baton_012_ac0_mod2_frege.py`](verification/verify_baton_012_ac0_mod2_frege.py) |
+| **Baton #013** | **【Wave 3 缝隙 2】GCT 重数障碍全扫描（$N=12..16$ & $N=30$）** | `verified` | 算全 $S_{12},S_{14},S_{15},S_{16}$ 精确特征标表（146 个填充候选全为 0 缺口，量化开轨道边界膨胀 $2.44\times/3.68\times$），并**直接认证出 $N=30$（$d=10,m=3$）的 2 个非平凡 10 次定义方程障碍见证 $\lambda=(13,3,2^7)$ 与 $(12,5,2^6,1)$** | [`verify_baton_013_gct_multiplicity_scan.py`](verification/verify_baton_013_gct_multiplicity_scan.py) |
+| **Baton #014** | **【Wave 3 缝隙 3】无界宽度 `CNF-SAT` + Valiant 深度约简桥** | `verified` | 13 个显式 DAG（90/90）验证 Valiant MSB 深度减半与 6/6 电路精确等价；将后 ETH 时代 `CNF-SAT-SETH` 堡垒进一步收窄为**多项式子句数无界宽度**（证明线性子句数无界宽度在 Schuler+IPZ 下同样坍塌至 $2^{o(n)}$） | [`verify_baton_014_valiant_unbounded_cnf.py`](verification/verify_baton_014_valiant_unbounded_cnf.py) |
+| **Baton #015** | **【Wave 3 形式化】Lean 4.12 核心库扩展（`ProofComplexityPHP.lean`）** | `verified` | 纯 Lean 4 核心（零 Mathlib、零 `sorry`、零 `Classical.choice`）形式化证明：鸽巢无单射、Cutting Planes 双重求和矛盾 + CG 取整、Valiant 边分桶均值引理，接入 GitHub Actions 真实内核编译 | [`verify_baton_015_lean4_library.py`](verification/verify_baton_015_lean4_library.py) |
 
-### 下一波开放认领的接力棒（Wave 3: Baton #012 – #014）
-- **Baton #012 (`baton-012-ac0-mod2-frege-php`)**：主攻 $\text{AC}^0[2]\text{-Frege}$ 在鸽巢原理上的下界（绕开加密可行插值壁垒的幸存证明复杂度前沿）
-- **Baton #013 (`baton-013-gct-multiplicity-search`)**：在 $N \ge 12$ 填充区间系统搜索正向重数障碍（$sk(\lambda; d^m) < a_\lambda(d, m)$）
-- **Baton #014 (`baton-014-cnf-sat-seth-unbounded-width`)**：研究 ETH 证伪后幸存的无界宽度 `CNF-SAT-SETH` 与非 IPZ 规约
+### 下一波开放认领的接力棒（Wave 4: Baton #016 – #018）
+- **Baton #016 (`baton-016-gct-n30-hwv-eval`)**：在 $\operatorname{perm}_3$ 上显式计算 Baton #013 认证出的两个 $N=30$ 10 次障碍（$(13,3,2^7)$ 与 $(12,5,2^6,1)$）的最高权向量（HWV），检验其是否非零！
+- **Baton #017 (`baton-017-res-xor-dag-lifting`)**：针对 Baton #012 定位的 BSW 字面量多样性失效，设计仿射子空间切换引理以将 $\text{PC}/\mathbb{F}_2$ 对偶见证提升至 DAG $\text{Res}(\oplus)$！
+- **Baton #018 (`baton-018-poly-clause-unbounded-cnf`)**：针对 Baton #014 精准收窄后的「多项式子句数无界宽度 `CNF-SAT`（$M=n^B$）」堡垒，探索非 IPZ 算法能否跨越 Valiant 的 $\Omega(n/\log\log n)$ 阈值！
 
 ---
 
@@ -70,12 +74,12 @@
 无论你是人类研究者，还是你把本仓库交给你自己的 AI Agent（Claude Code / Antigravity / Codex / Gemini / 本地模型），只需要 4 步即可接力：
 
 1. **阅读 Agent 上岗手册**：让你的 Agent 先读取 [`AGENT_SKILL.md`](AGENT_SKILL.md)、[`roadmap.json`](roadmap.json) 与各棒 `POSTMORTEM.md`（避免踩已经剪枝的坑）。
-2. **认领一个开放节点（Baton）**：在 GitHub Issues 中认领开放任务（如 **Baton #012 / #013 / #014**），或提新 Issue 分解子引理。
-3. **本地运行全套确定性门禁测试（自动执行全部 12 套验证脚本 + DAG 校验 + 诚实守门员）**：
+2. **认领一个开放节点（Baton）**：在 GitHub Issues 中认领开放任务（如 **Baton #016 / #017 / #018**），或提新 Issue 分解子引理。
+3. **本地运行全套确定性门禁测试（自动执行全部 16 套验证脚本 + 20 节点 DAG 校验 + 诚实守门员）**：
    ```bash
    python verification/validate_relay_gate.py
    ```
-4. **提交 PR（成功证明 / 分解子引理 / 严格失败验尸，三者皆受认可）**：GitHub Actions 会自动运行 Python 12 套件门禁与 Lean 4.12 内核编译检查，双绿灯后即可合并进入公共接力图谱。
+4. **提交 PR（成功证明 / 分解子引理 / 严格失败验尸，三者皆受认可）**：GitHub Actions 会自动运行 Python 16 套件门禁与 Lean 4.12 内核编译检查，双绿灯后即可合并进入公共接力图谱。
 
 ---
 

@@ -30,7 +30,11 @@
         "baton-011-fine-grained-eth-consequences",
         "baton-012-ac0-mod2-frege-php",
         "baton-013-gct-multiplicity-search",
-        "baton-014-cnf-sat-seth-unbounded-width"
+        "baton-014-cnf-sat-seth-unbounded-width",
+        "baton-015-lean4-php-and-barriers",
+        "baton-016-gct-n30-hwv-eval",
+        "baton-017-res-xor-dag-lifting",
+        "baton-018-poly-clause-unbounded-cnf"
       ],
       "owner_baton": null,
       "artifacts": []
@@ -234,40 +238,115 @@
     },
     {
       "id": "baton-012-ac0-mod2-frege-php",
-      "title": "Attack AC^0[2]-Frege lower bounds on Pigeonhole Principle (surviving proof-complexity frontier)",
+      "title": "Exact PC/F_2 Degrees, Dual Witnesses, and Res(XOR) / AC^0[2]-Frege Crack Audit on FPHP and Count_3",
       "type": "attack_route",
-      "status": "open",
+      "status": "verified",
       "dependencies": [
         "baton-006-proof-complexity-ef"
       ],
-      "owner_baton": null,
-      "artifacts": [],
-      "summary": "Unlocked by Baton #006: AC^0[2]-Frege lower bounds on PHP avoid feasible-interpolation crypto barriers and remain a premier open frontier."
+      "owner_baton": "baton-012",
+      "artifacts": [
+        "batons/baton-012-ac0-mod2-frege-php/ATTACK_REPORT.md",
+        "batons/baton-012-ac0-mod2-frege-php/POSTMORTEM.md",
+        "batons/baton-012-ac0-mod2-frege-php/node_patch.json",
+        "verification/verify_baton_012_ac0_mod2_frege.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_012_ac0_mod2_frege.py",
+      "summary": "Computed exact F_2 Polynomial Calculus (PC) & Static Nullstellensatz (NS) degrees and zero-trust-verified dual witnesses for FPHP_n^(n+1) (n=2,3,4: exact match to Razborov ceil(n/2)+1=[2,3,3] with strict dynamic-PC < static-NS separation 3<4 at n=4) and Count_3(m) (m=4,5,7,8,10: d_PC=1 over F_3 vs Kneser-graph separation 2<3 on Count_3(7) and BGIP linear onset d_PC>=3 with 1416-dim dual space on Count_3(10)); verified zero-trust Res(XOR) O(|E|)-Gaussian refutations of Tseitin(K_4,K_5,K_6,Heawood) vs FPHP's 2^((n-1)(n+1)) F_2-linear blindness, Frobenius linear-extension PC-degree invariance, and the exact BSW literal-diversity & Razborov-Smolensky error-accumulation walls blocking DAG Res(XOR) / AC^0[2]-Frege size lower bounds."
     },
     {
       "id": "baton-013-gct-multiplicity-search",
       "title": "Search for positive multiplicity obstructions (plethysm vs symmetric Kronecker) at N >= 12",
       "type": "attack_route",
-      "status": "open",
+      "status": "verified",
       "dependencies": [
         "baton-005-gct-obstructions"
       ],
-      "owner_baton": null,
-      "artifacts": [],
-      "summary": "Unlocked by Baton #005: Occurrence obstructions fail (BIP 2019); search for explicit multiplicity gaps sk(lambda; d^m) < a_lambda(d, m) in padded regimes."
+      "owner_baton": "baton-013",
+      "artifacts": [
+        "batons/baton-013-gct-multiplicity-search/ATTACK_REPORT.md",
+        "batons/baton-013-gct-multiplicity-search/POSTMORTEM.md",
+        "batons/baton-013-gct-multiplicity-search/node_patch.json",
+        "verification/verify_baton_013_gct_multiplicity_scan.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_013_gct_multiplicity_scan.py",
+      "summary": "Built Maya-bitmask Murnaghan-Nakayama & wreath-product plethysm engine verifying full S_12, S_14, S_15, S_16 character tables and GL_2..6 / S_N dimension identities in 1.86s; exhaustively scanned all 8 core m>=3 regimes and 14 padded (n=2,3) regimes (146 Pieri candidates), certifying 0 open-orbit gaps a_lambda(d,m) > sk(lambda; d^m) at N<=16 (while calibrating 13 dimension-trivial l>=5 gaps at m=2); proved Dixon-Beauville (d<=3) & Cayley-Grassmann (m=3, d<=4) universality walls, quantified open-orbit boundary inflation (3.682x at m=3,d=5), and certified 2 genuine non-trivial (l=9=m^2) degree-10 defining equations of Omega_3 at N=30: (13,3,2^7) and (12,5,2^6,1) with a=1 > 0=k=sk."
     },
     {
       "id": "baton-014-cnf-sat-seth-unbounded-width",
-      "title": "Investigate unbounded-width CNF-SAT-SETH & non-IPZ reductions post-ETH refutation",
+      "title": "Unbounded-Width CNF-SAT + Valiant Depth-Reduction Bridge (Post-Oct-2026 Frontier)",
       "type": "attack_route",
-      "status": "open",
+      "status": "verified",
       "dependencies": [
         "baton-011-fine-grained-eth-consequences"
       ],
+      "owner_baton": "baton-014",
+      "artifacts": [
+        "batons/baton-014-cnf-sat-seth-unbounded-width/ATTACK_REPORT.md",
+        "batons/baton-014-cnf-sat-seth-unbounded-width/POSTMORTEM.md",
+        "batons/baton-014-cnf-sat-seth-unbounded-width/node_patch.json",
+        "verification/verify_baton_014_valiant_unbounded_cnf.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_014_valiant_unbounded_cnf.py",
+      "summary": "Constructively proved and verified Valiant's 1977 MSB depth-reduction engine across 13 explicit fan-in-2 DAGs (d=8,16,32; N=64..528; 90 halving checks) and exact Sol(C)=Union Sol(Phi_y) equivalence on 6 concrete depth-8 circuits; implemented Ordered Schuler width-splitting + clause-hitting-set SAT (40/40 brute-force match across n=10..14, exact 5-digit concave-maximum bound 1-1/k+2*Delta*log2(e)/2^k); proved Linear-Clause Unbounded-Width CNF-SAT also collapses to 2^(o(n)) post-Oct-2026 above a triply-exponential crossover, isolating Polynomial-Clause CNF-SAT-SETH and quantifying the exact gap to Valiant's Omega(n/log log n) log-depth Circuit-SAT barrier."
+    },
+    {
+      "id": "baton-015-lean4-php-and-barriers",
+      "title": "Expand zero-Mathlib Lean 4.12 library with PHP, Cutting Planes & Valiant depth-reduction theorems",
+      "type": "formalization",
+      "status": "verified",
+      "dependencies": [
+        "baton-002-lean4-tseitin-dichotomy",
+        "baton-006-proof-complexity-ef"
+      ],
+      "owner_baton": "baton-015",
+      "artifacts": [
+        "formal/lean4/MillenniumRelay/ProofComplexityPHP.lean",
+        "formal/lean4/lakefile.toml",
+        "batons/baton-015-lean4-php-and-barriers/ATTACK_REPORT.md",
+        "batons/baton-015-lean4-php-and-barriers/POSTMORTEM.md",
+        "batons/baton-015-lean4-php-and-barriers/node_patch.json",
+        "verification/verify_baton_015_lean4_library.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_015_lean4_library.py",
+      "summary": "Added zero-Mathlib, zero-sorry, zero-warning Lean 4.12 core proofs of pigeonhole_no_injection, cutting_planes_php_contradiction (plus chvatal_gomory_hole_step), and valiant_msb_halving_step in formal/lean4/MillenniumRelay/ProofComplexityPHP.lean; registered the module in lakefile.toml; verified via live local Lean 4 kernel check (only [propext, Quot.sound]) and exhaustive combinatorial/DAG cross-checks in verify_baton_015_lean4_library.py."
+    },
+    {
+      "id": "baton-016-gct-n30-hwv-eval",
+      "title": "Evaluate certified N=30 degree-10 defining equations of Omega_3 on perm_3 via HWVs",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [
+        "baton-013-gct-multiplicity-search"
+      ],
       "owner_baton": null,
       "artifacts": [],
-      "summary": "Unlocked by Baton #011: While fixed-k SETH collapsed with ETH, unbounded-width CNF-SAT-SETH and OVH survive black-box IPZ sparsification."
+      "summary": "Unlocked by Baton #013: Test whether the two certified N=30 (d=10, m=3) obstructions (13,3,2^7) and (12,5,2^6,1) do not vanish on perm_3 via explicit highest-weight vector evaluation."
+    },
+    {
+      "id": "baton-017-res-xor-dag-lifting",
+      "title": "Design affine-subspace switching lemma to attack DAG Res(XOR) on PHP and Count_3",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [
+        "baton-012-ac0-mod2-frege-php"
+      ],
+      "owner_baton": null,
+      "artifacts": [],
+      "summary": "Unlocked by Baton #012: Bypass the BSW single-variable literal-diversity breakdown in Res(XOR) by lifting F_2 PC dual witnesses via affine subspace restrictions."
+    },
+    {
+      "id": "baton-018-poly-clause-unbounded-cnf",
+      "title": "Attack Polynomial-Clause Unbounded-Width CNF-SAT (M = n^B) toward Valiant's O(n/log log n) bridge",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [
+        "baton-014-cnf-sat-seth-unbounded-width"
+      ],
+      "owner_baton": null,
+      "artifacts": [],
+      "summary": "Unlocked by Baton #014: Linear-clause unbounded-width CNF-SAT collapsed under Schuler+IPZ+Oct2026; investigate whether M = n^B unbounded-width CNF-SAT admits 2^(n - omega(n/log log n)) algorithms."
     }
   ],
-  "completed_batons": 11
+  "completed_batons": 15
 }

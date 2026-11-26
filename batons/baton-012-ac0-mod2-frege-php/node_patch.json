@@ -1,0 +1,18 @@
+{
+  "id": "baton-012-ac0-mod2-frege-php",
+  "title": "Exact PC/F_2 Degrees, Dual Witnesses, and Res(XOR) / AC^0[2]-Frege Crack Audit on FPHP and Count_3",
+  "type": "attack_route",
+  "status": "verified",
+  "dependencies": [
+    "baton-006-proof-complexity-ef"
+  ],
+  "owner_baton": "baton-012",
+  "artifacts": [
+    "batons/baton-012-ac0-mod2-frege-php/ATTACK_REPORT.md",
+    "batons/baton-012-ac0-mod2-frege-php/POSTMORTEM.md",
+    "batons/baton-012-ac0-mod2-frege-php/node_patch.json",
+    "verification/verify_baton_012_ac0_mod2_frege.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_012_ac0_mod2_frege.py",
+  "summary": "Computed exact F_2 Polynomial Calculus (PC) & Static Nullstellensatz (NS) degrees and zero-trust-verified dual witnesses for FPHP_n^(n+1) (n=2,3,4: exact match to Razborov ceil(n/2)+1=[2,3,3] with strict dynamic-PC < static-NS separation 3<4 at n=4) and Count_3(m) (m=4,5,7,8,10: d_PC=1 over F_3 vs Kneser-graph separation 2<3 on Count_3(7) and BGIP linear onset d_PC>=3 with 1416-dim dual space on Count_3(10)); verified zero-trust Res(XOR) O(|E|)-Gaussian refutations of Tseitin(K_4,K_5,K_6,Heawood) vs FPHP's 2^((n-1)(n+1)) F_2-linear blindness, Frobenius linear-extension PC-degree invariance, and the exact BSW literal-diversity & Razborov-Smolensky error-accumulation walls blocking DAG Res(XOR) / AC^0[2]-Frege size lower bounds."
+}
