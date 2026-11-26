@@ -1,0 +1,20 @@
+{
+  "id": "baton-002-lean4-tseitin-dichotomy",
+  "title": "Eliminate sorrys in formal/lean4/MillenniumRelay/TseitinDichotomy.lean and enable Lean CI",
+  "type": "formalization",
+  "status": "verified",
+  "dependencies": [
+    "route-1a-blackbox-tseitin-eth"
+  ],
+  "owner_baton": "baton-002",
+  "artifacts": [
+    "formal/lean4/MillenniumRelay/TseitinDichotomy.lean",
+    "formal/lean4/lean-toolchain",
+    "formal/lean4/lakefile.toml",
+    "batons/baton-002-lean4-tseitin-dichotomy/ATTACK_REPORT.md",
+    "batons/baton-002-lean4-tseitin-dichotomy/POSTMORTEM.md",
+    "verification/verify_baton_002_lean_proof.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_002_lean_proof.py",
+  "summary": "Replaced both sorry placeholders in TseitinDichotomy.lean with zero-Mathlib Lean 4.12 core proofs preserving both immutable statements, added lean-toolchain and lakefile.toml for Lean CI, and verified static hygiene plus 320,000 algebraic test triples via verify_baton_002_lean_proof.py."
+}

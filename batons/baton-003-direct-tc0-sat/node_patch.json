@@ -1,0 +1,17 @@
+{
+  "id": "baton-003-direct-tc0-sat",
+  "title": "Design structure-preserving TC0-SAT algorithm avoiding Tseitin variable blowup",
+  "type": "attack_route",
+  "status": "blocked_by_barrier",
+  "dependencies": [
+    "route-1a-blackbox-tseitin-eth"
+  ],
+  "owner_baton": "baton-003",
+  "artifacts": [
+    "batons/baton-003-direct-tc0-sat/ATTACK_REPORT.md",
+    "batons/baton-003-direct-tc0-sat/POSTMORTEM.md",
+    "verification/verify_baton_003_tc0_sat.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_003_tc0_sat.py",
+  "summary": "Implemented & verified zero-Tseitin depth-2 TC0-SAT solver (100% brute-force equivalence across n=8..12, 92.9% work reduction), and proved/verified the exact walls trapping depth-d TC0-SAT at w(n)=n^(1+c^(-d)): BRS denominator-clearing degree blowup, Littlewood-Offord restriction decay colliding with Allender-Koucky amplification (c^(-d) < k/d), witness-compression loss, and the TC0-PRF Natural Proofs barrier."
+}

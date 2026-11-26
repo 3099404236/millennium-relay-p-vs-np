@@ -7,7 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  relay-gate:
+  python-verification-gate:
+    name: Python Verification & Relay Gate (12 Suites + DAG Audit)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -18,11 +19,19 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run Tseitin-ETH Dichotomy Verification
-        run: python verification/verify_tseitin_dichotomy.py
-
-      - name: Run Complexity Barrier Diagnostics
-        run: python verification/verify_barriers.py
-
-      - name: Run Deterministic Relay Gate (DAG, Artifacts, Honesty Guard)
+      - name: Run Deterministic Relay Gate (DAG, Artifacts, All Node Verification Scripts & Honesty Guard)
         run: python verification/validate_relay_gate.py
+
+  lean4-kernel-gate:
+    name: Lean 4.12 Kernel Verification (Baton #002)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install elan and build Lean 4 formalization
+        working-directory: formal/lean4
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+          $HOME/.elan/bin/lake build

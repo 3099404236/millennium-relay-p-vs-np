@@ -1,0 +1,7 @@
+name = "millennium_relay"
+version = "0.1.0"
+defaultTargets = ["MillenniumRelay"]
+
+[[lean_lib]]
+name = "MillenniumRelay"
+roots = ["MillenniumRelay.TseitinDichotomy"]

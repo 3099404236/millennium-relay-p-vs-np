@@ -1,0 +1,15 @@
+{
+  "id": "baton-009-algebrization-audit",
+  "title": "Aaronson-Wigderson (2009) Algebrization Barrier & Executable Arithmetization / Sumcheck Audit",
+  "type": "barrier_analysis",
+  "status": "verified",
+  "dependencies": [],
+  "owner_baton": "baton-009",
+  "artifacts": [
+    "batons/baton-009-algebrization-audit/ATTACK_REPORT.md",
+    "batons/baton-009-algebrization-audit/POSTMORTEM.md",
+    "verification/verify_baton_009_algebrization.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_009_algebrization.py",
+  "summary": "Formalized and executably audited the Aaronson-Wigderson (2009) Algebrization Barrier over F_101 and F_257: verified exact multilinear extensions (MLE/LDE), full interactive Sumcheck (honest completeness + Schwartz-Zippel optimal-cheater soundness >= 1-nd/q for n=4,5), why BGS fails against A~, explicit sparse Set-Disjointness algebraic-oracle hiding, and streaming PSPACE MLE evaluation underpinning NP^{A~} <= P^A <= P^{A~}."
+}

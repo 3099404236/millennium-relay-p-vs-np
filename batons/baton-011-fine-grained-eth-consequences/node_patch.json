@@ -1,0 +1,17 @@
+{
+  "id": "baton-011-fine-grained-eth-consequences",
+  "title": "Post-October-2026 ETH Refutation Audit: IPZ Propagation, SETH Collapse, and Surviving P vs NP / Fine-Grained Frontiers",
+  "type": "consequence_audit",
+  "status": "verified",
+  "dependencies": [
+    "route-1a-blackbox-tseitin-eth"
+  ],
+  "owner_baton": "baton-011",
+  "artifacts": [
+    "batons/baton-011-fine-grained-eth-consequences/ATTACK_REPORT.md",
+    "batons/baton-011-fine-grained-eth-consequences/POSTMORTEM.md",
+    "verification/verify_baton_011_eth_consequences.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_011_eth_consequences.py",
+  "summary": "Mapped post-October-2026 ETH refutation fallout: implemented & exhaustively verified IPZ 3-CNF flower/sunflower sparsification (exact Sol(Phi)=Union Sol(Phi_j) and |C2|<=2n_act, |C3|<=4n_act), proved k-SAT propagation exp(O_k(n/(log n)^beta_k)) collapsing SETH (s_k=0 for fixed k) while showing unbounded-width breakdown preserves CNF-SAT-SETH, and quantified the exponential survival gap leaving P!=NP, QETH, SP-ETH(eps), OVH/3SUM/APSP, and Natural Proofs PRFs intact."
+}

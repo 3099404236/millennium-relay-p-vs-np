@@ -18,9 +18,19 @@
       "dependencies": [
         "route-1a-blackbox-tseitin-eth",
         "route-1b-hardness-magnification",
+        "baton-002-lean4-tseitin-dichotomy",
         "baton-003-direct-tc0-sat",
         "baton-004-nonlocal-magnification",
-        "baton-005-gct-obstructions"
+        "baton-005-gct-obstructions",
+        "baton-006-proof-complexity-ef",
+        "baton-007-monotone-lifting",
+        "baton-008-gate-elimination-frontier",
+        "baton-009-algebrization-audit",
+        "baton-010-acc0-polynomial-method",
+        "baton-011-fine-grained-eth-consequences",
+        "baton-012-ac0-mod2-frege-php",
+        "baton-013-gct-multiplicity-search",
+        "baton-014-cnf-sat-seth-unbounded-width"
       ],
       "owner_baton": null,
       "artifacts": []
@@ -61,49 +71,203 @@
       "id": "baton-002-lean4-tseitin-dichotomy",
       "title": "Eliminate sorrys in formal/lean4/MillenniumRelay/TseitinDichotomy.lean and enable Lean CI",
       "type": "formalization",
-      "status": "open",
+      "status": "verified",
       "dependencies": [
         "route-1a-blackbox-tseitin-eth"
       ],
-      "owner_baton": null,
+      "owner_baton": "baton-002",
       "artifacts": [
-        "formal/lean4/MillenniumRelay/TseitinDichotomy.lean"
+        "formal/lean4/MillenniumRelay/TseitinDichotomy.lean",
+        "formal/lean4/lean-toolchain",
+        "formal/lean4/lakefile.toml",
+        "batons/baton-002-lean4-tseitin-dichotomy/ATTACK_REPORT.md",
+        "batons/baton-002-lean4-tseitin-dichotomy/POSTMORTEM.md",
+        "verification/verify_baton_002_lean_proof.py"
       ],
-      "summary": "Formalize the Tseitin variable-count bound and the asymptotic P/poly scaling dichotomy in Lean 4 with zero sorrys."
+      "verification_cmd": "python verification/verify_baton_002_lean_proof.py",
+      "summary": "Replaced both sorry placeholders in TseitinDichotomy.lean with zero-Mathlib Lean 4.12 core proofs preserving both immutable statements, added lean-toolchain and lakefile.toml for Lean CI, and verified static hygiene plus 320,000 algebraic test triples via verify_baton_002_lean_proof.py."
     },
     {
       "id": "baton-003-direct-tc0-sat",
       "title": "Design structure-preserving TC0-SAT algorithm avoiding Tseitin variable blowup",
       "type": "attack_route",
-      "status": "open",
+      "status": "blocked_by_barrier",
       "dependencies": [
         "route-1a-blackbox-tseitin-eth"
       ],
-      "owner_baton": null,
-      "artifacts": [],
-      "summary": "Target a 2^(n - n^delta) Circuit-SAT algorithm for depth-d TC0 circuits with n^(1+eps) wires via polynomial approximations or linear-threshold decompositions, aiming at NEXP not in TC0."
+      "owner_baton": "baton-003",
+      "artifacts": [
+        "batons/baton-003-direct-tc0-sat/ATTACK_REPORT.md",
+        "batons/baton-003-direct-tc0-sat/POSTMORTEM.md",
+        "verification/verify_baton_003_tc0_sat.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_003_tc0_sat.py",
+      "summary": "Implemented & verified zero-Tseitin depth-2 TC0-SAT solver (100% brute-force equivalence across n=8..12, 92.9% work reduction), and proved/verified the exact walls trapping depth-d TC0-SAT at w(n)=n^(1+c^(-d)): BRS denominator-clearing degree blowup, Littlewood-Offord restriction decay colliding with Allender-Koucky amplification (c^(-d) < k/d), witness-compression loss, and the TC0-PRF Natural Proofs barrier."
     },
     {
       "id": "baton-004-nonlocal-magnification",
       "title": "Explore non-local Hardness Magnification / Hirahara non-black-box reductions for MKtP",
       "type": "attack_route",
-      "status": "open",
+      "status": "blocked_by_barrier",
       "dependencies": [
         "route-1b-hardness-magnification"
       ],
-      "owner_baton": null,
-      "artifacts": [],
-      "summary": "Investigate meta-complexity reductions that bypass the CHOPRS (2020) small-depth oracle locality barrier."
+      "owner_baton": "baton-004",
+      "artifacts": [
+        "batons/baton-004-nonlocal-magnification/ATTACK_REPORT.md",
+        "batons/baton-004-nonlocal-magnification/POSTMORTEM.md",
+        "verification/verify_baton_004_magnification_locality.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_004_magnification_locality.py",
+      "summary": "Analyzed CHOPRS (STOC 2020) Locality Barrier and Hirahara's non-black-box MKtP reductions; certified exact n=3 (256-function) DAG MCSP[s] distribution, depth<=3 local oracle decision trees, Razborov-Rudich density split, parameter-window collapse (beta<eps/c->0), and the Non-Uniform Code-Size Paradox (|M|+advice < N < |C|=N^(1+eps) << |O_m|=2^m)."
     },
     {
       "id": "baton-005-gct-obstructions",
-      "title": "Computational & formal testbed for GCT multiplicity obstructions (Kronecker / plethysm)",
+      "title": "Computational & formal testbed for GCT obstructions (Perm vs Det, Grenet, Kronecker/plethysm)",
+      "type": "attack_route",
+      "status": "blocked_by_barrier",
+      "dependencies": [],
+      "owner_baton": "baton-005",
+      "artifacts": [
+        "batons/baton-005-gct-obstructions/ATTACK_REPORT.md",
+        "batons/baton-005-gct-obstructions/POSTMORTEM.md",
+        "batons/baton-005-gct-obstructions/node_patch.json",
+        "verification/verify_baton_005_gct_perm_det.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_005_gct_perm_det.py",
+      "summary": "Verified dc(perm_2)=2, Grenet's 7x7 M_3(X) symbolically in Z[X] and on 50 random integer 3x3 matrices (dc(perm_3)<=7), and Grenet's 15x15 M_4(X); proved Pieri padding interlacing and verified 100% small-degree symmetric Kronecker occurrence positivity mirroring BIP (JAMS 2019); blocked by BIP No-Occurrence-Obstructions, #P-hardness of Kronecker/plethysm multiplicity obstructions, and Algebraic Natural Proofs."
+    },
+    {
+      "id": "baton-006-proof-complexity-ef",
+      "title": "Cook-Reckhow Proof Complexity: Resolution vs Cutting Planes Separation & Extended Frege Barrier Audit",
+      "type": "barrier_analysis",
+      "status": "blocked_by_barrier",
+      "dependencies": [],
+      "owner_baton": "baton-006",
+      "artifacts": [
+        "batons/baton-006-proof-complexity-ef/ATTACK_REPORT.md",
+        "batons/baton-006-proof-complexity-ef/POSTMORTEM.md",
+        "verification/verify_baton_006_proof_complexity.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_006_proof_complexity.py",
+      "summary": "Mechanically verified exponential Resolution blowup vs exact cubic O(n^3) Cutting Planes refutations (up to n=20) on PHP_n^(n+1), proved w(PHP_n^(n+1) |- bot)=w_0=n requiring expander G-PHP for BSW, and isolated the Feasible Interpolation & Self-Referential Reflection Barriers blocking Frege/Extended Frege lower bounds."
+    },
+    {
+      "id": "baton-007-monotone-lifting",
+      "title": "Diagnose Monotone Circuit Lower Bounds (Razborov/Alon-Boppana), GPW Lifting, and Tardos's Non-Monotone Cancellation Wall",
+      "type": "barrier_analysis",
+      "status": "blocked_by_barrier",
+      "dependencies": [],
+      "owner_baton": "baton-007",
+      "artifacts": [
+        "batons/baton-007-monotone-lifting/ATTACK_REPORT.md",
+        "batons/baton-007-monotone-lifting/POSTMORTEM.md",
+        "verification/verify_baton_007_monotone_lifting.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_007_monotone_lifting.py",
+      "summary": "Verified Erdos-Rado sunflower plucking & Razborov's approximator core (v=5,6), exact 3-CLIQUE vs 2-COLORABLE KW rectangle cover collapse (mKW=10 vs general KW=7), GPW index-gadget lifting on Tseitin(K_3) o IND_m^3 (density 1/(2m^2)), and Tardos's Non-Monotone Cancellation Wall (MAJ_3 XOR cancellation, Kirchhoff K_4 determinant cancelling 11/27 spurious terms, and Lovasz theta SDP separation on K_3, C_5, and all 48 2-colorable graphs on v=5,6)."
+    },
+    {
+      "id": "baton-008-gate-elimination-frontier",
+      "title": "Prune local gate elimination beyond O(n) via Dual-Distance-3 XOR-Shielding & B_2/U_2 frontier analysis",
+      "type": "pruned_route",
+      "status": "pruned",
+      "dependencies": [],
+      "owner_baton": "baton-008",
+      "artifacts": [
+        "batons/baton-008-gate-elimination-frontier/ATTACK_REPORT.md",
+        "batons/baton-008-gate-elimination-frontier/POSTMORTEM.md",
+        "verification/verify_baton_008_gate_elimination.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_008_gate_elimination.py",
+      "summary": "Mapped B_2 (3n -> 3.0116n -> 3.1n) and U_2 (5n) gate-elimination frontiers; proved and exhaustively verified via a real B_2 DAG simplifier (MOD_3, MAJ_n, InnerProduct_n, and Theta(n^2) 4-layer dual-distance-3 XOR-shielded circuits) that local constant/affine gate elimination stalls strictly at O(n)."
+    },
+    {
+      "id": "baton-009-algebrization-audit",
+      "title": "Aaronson-Wigderson (2009) Algebrization Barrier & Executable Arithmetization / Sumcheck Audit",
+      "type": "barrier_analysis",
+      "status": "verified",
+      "dependencies": [],
+      "owner_baton": "baton-009",
+      "artifacts": [
+        "batons/baton-009-algebrization-audit/ATTACK_REPORT.md",
+        "batons/baton-009-algebrization-audit/POSTMORTEM.md",
+        "verification/verify_baton_009_algebrization.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_009_algebrization.py",
+      "summary": "Formalized and executably audited the Aaronson-Wigderson (2009) Algebrization Barrier over F_101 and F_257: verified exact multilinear extensions (MLE/LDE), full interactive Sumcheck (honest completeness + Schwartz-Zippel optimal-cheater soundness >= 1-nd/q for n=4,5), why BGS fails against A~, explicit sparse Set-Disjointness algebraic-oracle hiding, and streaming PSPACE MLE evaluation underpinning NP^{A~} <= P^A <= P^{A~}."
+    },
+    {
+      "id": "baton-010-acc0-polynomial-method",
+      "title": "Reconstruct Williams's NEXP not in ACC^0 polynomial method and quantify the exact ACC^0 -> TC^0 degree wall",
+      "type": "barrier_analysis",
+      "status": "verified",
+      "dependencies": [
+        "route-1a-blackbox-tseitin-eth"
+      ],
+      "owner_baton": "baton-010",
+      "artifacts": [
+        "batons/baton-010-acc0-polynomial-method/ATTACK_REPORT.md",
+        "batons/baton-010-acc0-polynomial-method/POSTMORTEM.md",
+        "batons/baton-010-acc0-polynomial-method/node_patch.json",
+        "verification/verify_baton_010_acc0_poly_method.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_010_acc0_poly_method.py",
+      "summary": "Reconstructed & verified Williams's ACC^0-SAT engine (Beigel-Tarui R_ell SYM o AND compilation, O(n*2^n) Fast Zeta batch evaluation, l-variable OR-compression) and quantified the exact ACC^0 -> TC^0 wall: MAJ_w requires field-universal probabilistic degree Theta(sqrt(w * log(1/eps))), crossing the rectangular-MM entropy limit H(D/n) = alpha/2 at D/n = 0.0228 (alpha=0.31389) and saturating degree n at depth-2 MAJ o MAJ or quadratic fan-in w = n^2."
+    },
+    {
+      "id": "baton-011-fine-grained-eth-consequences",
+      "title": "Post-October-2026 ETH Refutation Audit: IPZ Propagation, SETH Collapse, and Surviving P vs NP / Fine-Grained Frontiers",
+      "type": "consequence_audit",
+      "status": "verified",
+      "dependencies": [
+        "route-1a-blackbox-tseitin-eth"
+      ],
+      "owner_baton": "baton-011",
+      "artifacts": [
+        "batons/baton-011-fine-grained-eth-consequences/ATTACK_REPORT.md",
+        "batons/baton-011-fine-grained-eth-consequences/POSTMORTEM.md",
+        "verification/verify_baton_011_eth_consequences.py"
+      ],
+      "verification_cmd": "python verification/verify_baton_011_eth_consequences.py",
+      "summary": "Mapped post-October-2026 ETH refutation fallout: implemented & exhaustively verified IPZ 3-CNF flower/sunflower sparsification (exact Sol(Phi)=Union Sol(Phi_j) and |C2|<=2n_act, |C3|<=4n_act), proved k-SAT propagation exp(O_k(n/(log n)^beta_k)) collapsing SETH (s_k=0 for fixed k) while showing unbounded-width breakdown preserves CNF-SAT-SETH, and quantified the exponential survival gap leaving P!=NP, QETH, SP-ETH(eps), OVH/3SUM/APSP, and Natural Proofs PRFs intact."
+    },
+    {
+      "id": "baton-012-ac0-mod2-frege-php",
+      "title": "Attack AC^0[2]-Frege lower bounds on Pigeonhole Principle (surviving proof-complexity frontier)",
       "type": "attack_route",
       "status": "open",
-      "dependencies": [],
+      "dependencies": [
+        "baton-006-proof-complexity-ef"
+      ],
       "owner_baton": null,
       "artifacts": [],
-      "summary": "Build reproducible multiplicity-obstruction verification scripts for small (n, m) permanent-vs-determinant instances to chart surviving GCT routes."
+      "summary": "Unlocked by Baton #006: AC^0[2]-Frege lower bounds on PHP avoid feasible-interpolation crypto barriers and remain a premier open frontier."
+    },
+    {
+      "id": "baton-013-gct-multiplicity-search",
+      "title": "Search for positive multiplicity obstructions (plethysm vs symmetric Kronecker) at N >= 12",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [
+        "baton-005-gct-obstructions"
+      ],
+      "owner_baton": null,
+      "artifacts": [],
+      "summary": "Unlocked by Baton #005: Occurrence obstructions fail (BIP 2019); search for explicit multiplicity gaps sk(lambda; d^m) < a_lambda(d, m) in padded regimes."
+    },
+    {
+      "id": "baton-014-cnf-sat-seth-unbounded-width",
+      "title": "Investigate unbounded-width CNF-SAT-SETH & non-IPZ reductions post-ETH refutation",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [
+        "baton-011-fine-grained-eth-consequences"
+      ],
+      "owner_baton": null,
+      "artifacts": [],
+      "summary": "Unlocked by Baton #011: While fixed-k SETH collapsed with ETH, unbounded-width CNF-SAT-SETH and OVH survive black-box IPZ sparsification."
     }
-  ]
+  ],
+  "completed_batons": 11
 }

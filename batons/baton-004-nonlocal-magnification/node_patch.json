@@ -1,0 +1,17 @@
+{
+  "id": "baton-004-nonlocal-magnification",
+  "title": "Explore non-local Hardness Magnification / Hirahara non-black-box reductions for MKtP",
+  "type": "attack_route",
+  "status": "blocked_by_barrier",
+  "dependencies": [
+    "route-1b-hardness-magnification"
+  ],
+  "owner_baton": "baton-004",
+  "artifacts": [
+    "batons/baton-004-nonlocal-magnification/ATTACK_REPORT.md",
+    "batons/baton-004-nonlocal-magnification/POSTMORTEM.md",
+    "verification/verify_baton_004_magnification_locality.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_004_magnification_locality.py",
+  "summary": "Analyzed CHOPRS (STOC 2020) Locality Barrier and Hirahara's non-black-box MKtP reductions; certified exact n=3 (256-function) DAG MCSP[s] distribution, depth<=3 local oracle decision trees, Razborov-Rudich density split, parameter-window collapse (beta<eps/c->0), and the Non-Uniform Code-Size Paradox (|M|+advice < N < |C|=N^(1+eps) << |O_m|=2^m)."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "baton-006-proof-complexity-ef",
+  "title": "Cook-Reckhow Proof Complexity: Resolution vs Cutting Planes Separation & Extended Frege Barrier Audit",
+  "type": "barrier_analysis",
+  "status": "blocked_by_barrier",
+  "dependencies": [],
+  "owner_baton": "baton-006",
+  "artifacts": [
+    "batons/baton-006-proof-complexity-ef/ATTACK_REPORT.md",
+    "batons/baton-006-proof-complexity-ef/POSTMORTEM.md",
+    "verification/verify_baton_006_proof_complexity.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_006_proof_complexity.py",
+  "summary": "Mechanically verified exponential Resolution blowup vs exact cubic O(n^3) Cutting Planes refutations (up to n=20) on PHP_n^(n+1), proved w(PHP_n^(n+1) |- bot)=w_0=n requiring expander G-PHP for BSW, and isolated the Feasible Interpolation & Self-Referential Reflection Barriers blocking Frege/Extended Frege lower bounds."
+}

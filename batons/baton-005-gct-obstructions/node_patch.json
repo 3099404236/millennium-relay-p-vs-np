@@ -1,0 +1,16 @@
+{
+  "id": "baton-005-gct-obstructions",
+  "title": "Computational & formal testbed for GCT obstructions (Perm vs Det, Grenet, Kronecker/plethysm)",
+  "type": "attack_route",
+  "status": "blocked_by_barrier",
+  "dependencies": [],
+  "owner_baton": "baton-005",
+  "artifacts": [
+    "batons/baton-005-gct-obstructions/ATTACK_REPORT.md",
+    "batons/baton-005-gct-obstructions/POSTMORTEM.md",
+    "batons/baton-005-gct-obstructions/node_patch.json",
+    "verification/verify_baton_005_gct_perm_det.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_005_gct_perm_det.py",
+  "summary": "Verified dc(perm_2)=2, Grenet's 7x7 M_3(X) symbolically in Z[X] and on 50 random integer 3x3 matrices (dc(perm_3)<=7), and Grenet's 15x15 M_4(X); proved Pieri padding interlacing and verified 100% small-degree symmetric Kronecker occurrence positivity mirroring BIP (JAMS 2019); blocked by BIP No-Occurrence-Obstructions, #P-hardness of Kronecker/plethysm multiplicity obstructions, and Algebraic Natural Proofs."
+}

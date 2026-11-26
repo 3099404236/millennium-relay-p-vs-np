@@ -1,0 +1,15 @@
+{
+  "id": "baton-007-monotone-lifting",
+  "title": "Diagnose Monotone Circuit Lower Bounds (Razborov/Alon-Boppana), GPW Lifting, and Tardos's Non-Monotone Cancellation Wall",
+  "type": "barrier_analysis",
+  "status": "blocked_by_barrier",
+  "dependencies": [],
+  "owner_baton": "baton-007",
+  "artifacts": [
+    "batons/baton-007-monotone-lifting/ATTACK_REPORT.md",
+    "batons/baton-007-monotone-lifting/POSTMORTEM.md",
+    "verification/verify_baton_007_monotone_lifting.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_007_monotone_lifting.py",
+  "summary": "Verified Erdos-Rado sunflower plucking & Razborov's approximator core (v=5,6), exact 3-CLIQUE vs 2-COLORABLE KW rectangle cover collapse (mKW=10 vs general KW=7), GPW index-gadget lifting on Tseitin(K_3) o IND_m^3 (density 1/(2m^2)), and Tardos's Non-Monotone Cancellation Wall (MAJ_3 XOR cancellation, Kirchhoff K_4 determinant cancelling 11/27 spurious terms, and Lovasz theta SDP separation on K_3, C_5, and all 48 2-colorable graphs on v=5,6)."
+}

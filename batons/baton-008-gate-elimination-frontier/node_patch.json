@@ -1,0 +1,15 @@
+{
+  "id": "baton-008-gate-elimination-frontier",
+  "title": "Prune local gate elimination beyond O(n) via Dual-Distance-3 XOR-Shielding & B_2/U_2 frontier analysis",
+  "type": "pruned_route",
+  "status": "pruned",
+  "dependencies": [],
+  "owner_baton": "baton-008",
+  "artifacts": [
+    "batons/baton-008-gate-elimination-frontier/ATTACK_REPORT.md",
+    "batons/baton-008-gate-elimination-frontier/POSTMORTEM.md",
+    "verification/verify_baton_008_gate_elimination.py"
+  ],
+  "verification_cmd": "python verification/verify_baton_008_gate_elimination.py",
+  "summary": "Mapped B_2 (3n -> 3.0116n -> 3.1n) and U_2 (5n) gate-elimination frontiers; proved and exhaustively verified via a real B_2 DAG simplifier (MOD_3, MAJ_n, InnerProduct_n, and Theta(n^2) 4-layer dual-distance-3 XOR-shielded circuits) that local constant/affine gate elimination stalls strictly at O(n)."
+}
