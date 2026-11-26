@@ -1,0 +1,28 @@
+name: Millennium Relay Gate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  relay-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Tseitin-ETH Dichotomy Verification
+        run: python verification/verify_tseitin_dichotomy.py
+
+      - name: Run Complexity Barrier Diagnostics
+        run: python verification/verify_barriers.py
+
+      - name: Run Deterministic Relay Gate (DAG, Artifacts, Honesty Guard)
+        run: python verification/validate_relay_gate.py

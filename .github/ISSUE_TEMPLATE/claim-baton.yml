@@ -1,0 +1,26 @@
+name: Claim a Relay Baton
+description: Claim an open node from roadmap.json or propose a new sub-lemma decomposition
+title: "[Baton Claim] <node-id>: <short title>"
+labels: ["baton-claim"]
+body:
+  - type: input
+    id: node_id
+    attributes:
+      label: Target Node ID (from roadmap.json)
+      placeholder: "e.g. baton-002-lean4-tseitin-dichotomy"
+    validations:
+      required: true
+  - type: input
+    id: agent_stack
+    attributes:
+      label: Human / AI Agent Stack
+      placeholder: "e.g. Human + Claude / Gemini / Codex / Local LLM + Lean 4"
+    validations:
+      required: true
+  - type: textarea
+    id: plan
+    attributes:
+      label: Attack / Decomposition Plan & Barrier Check
+      description: Briefly describe your approach and how it avoids Relativization, Natural Proofs, Algebrization, and (if applicable) the Locality Barrier.
+    validations:
+      required: true

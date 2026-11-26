@@ -1,0 +1,109 @@
+{
+  "project": "millennium-relay-p-vs-np",
+  "target_millennium_problem": "P versus NP",
+  "protocol_version": "1.0.0",
+  "last_updated": "2026-11-26",
+  "barriers": [
+    "relativization_bgs_1975",
+    "natural_proofs_rr_1997",
+    "algebrization_aw_2009",
+    "locality_barrier_choprs_2020"
+  ],
+  "nodes": [
+    {
+      "id": "root-p-vs-np",
+      "title": "Resolve P vs NP (e.g., prove NP not in P/poly or exhibit poly-time SAT)",
+      "type": "root",
+      "status": "open",
+      "dependencies": [
+        "route-1a-blackbox-tseitin-eth",
+        "route-1b-hardness-magnification",
+        "baton-003-direct-tc0-sat",
+        "baton-004-nonlocal-magnification",
+        "baton-005-gct-obstructions"
+      ],
+      "owner_baton": null,
+      "artifacts": []
+    },
+    {
+      "id": "route-1a-blackbox-tseitin-eth",
+      "title": "Prune black-box Tseitin + sub-exponential 3-SAT route via Tseitin-ETH Scaling Dichotomy",
+      "type": "pruned_route",
+      "status": "pruned",
+      "dependencies": [],
+      "owner_baton": "baton-001",
+      "artifacts": [
+        "batons/baton-001-p-vs-np-initial-attack/ATTACK_REPORT.md",
+        "batons/baton-001-p-vs-np-initial-attack/POSTMORTEM.md",
+        "verification/verify_tseitin_dichotomy.py"
+      ],
+      "verification_cmd": "python verification/verify_tseitin_dichotomy.py",
+      "summary": "Proved & verified that black-box Tseitin with exp(m/sqrt(log m)) 3-SAT peaks at s*(n)=Theta(n*sqrt(log n)), and reaching P/poly requires 3-SAT in DTIME(2^(m^eps)) for all eps > 0."
+    },
+    {
+      "id": "route-1b-hardness-magnification",
+      "title": "Diagnose Williams-to-Hardness-Magnification bridge (Class Gap + Locality Barrier)",
+      "type": "barrier_analysis",
+      "status": "blocked_by_barrier",
+      "dependencies": [
+        "route-1a-blackbox-tseitin-eth"
+      ],
+      "owner_baton": "baton-001",
+      "artifacts": [
+        "batons/baton-001-p-vs-np-initial-attack/ATTACK_REPORT.md",
+        "batons/baton-001-p-vs-np-initial-attack/POSTMORTEM.md",
+        "verification/verify_barriers.py"
+      ],
+      "verification_cmd": "python verification/verify_barriers.py",
+      "summary": "Documented NEXP-vs-NP class gap and CHOPRS (STOC 2020) Locality Barrier blocking naive magnification gluing."
+    },
+    {
+      "id": "baton-002-lean4-tseitin-dichotomy",
+      "title": "Eliminate sorrys in formal/lean4/MillenniumRelay/TseitinDichotomy.lean and enable Lean CI",
+      "type": "formalization",
+      "status": "open",
+      "dependencies": [
+        "route-1a-blackbox-tseitin-eth"
+      ],
+      "owner_baton": null,
+      "artifacts": [
+        "formal/lean4/MillenniumRelay/TseitinDichotomy.lean"
+      ],
+      "summary": "Formalize the Tseitin variable-count bound and the asymptotic P/poly scaling dichotomy in Lean 4 with zero sorrys."
+    },
+    {
+      "id": "baton-003-direct-tc0-sat",
+      "title": "Design structure-preserving TC0-SAT algorithm avoiding Tseitin variable blowup",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [
+        "route-1a-blackbox-tseitin-eth"
+      ],
+      "owner_baton": null,
+      "artifacts": [],
+      "summary": "Target a 2^(n - n^delta) Circuit-SAT algorithm for depth-d TC0 circuits with n^(1+eps) wires via polynomial approximations or linear-threshold decompositions, aiming at NEXP not in TC0."
+    },
+    {
+      "id": "baton-004-nonlocal-magnification",
+      "title": "Explore non-local Hardness Magnification / Hirahara non-black-box reductions for MKtP",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [
+        "route-1b-hardness-magnification"
+      ],
+      "owner_baton": null,
+      "artifacts": [],
+      "summary": "Investigate meta-complexity reductions that bypass the CHOPRS (2020) small-depth oracle locality barrier."
+    },
+    {
+      "id": "baton-005-gct-obstructions",
+      "title": "Computational & formal testbed for GCT multiplicity obstructions (Kronecker / plethysm)",
+      "type": "attack_route",
+      "status": "open",
+      "dependencies": [],
+      "owner_baton": null,
+      "artifacts": [],
+      "summary": "Build reproducible multiplicity-obstruction verification scripts for small (n, m) permanent-vs-determinant instances to chart surviving GCT routes."
+    }
+  ]
+}
